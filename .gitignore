@@ -9,8 +9,6 @@
 !plugins/**
 !skills/
 !skills/**
-!TODO/
-!TODO/**
 
 # Except default customizations
 !settings.json
