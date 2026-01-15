@@ -1,0 +1,22 @@
+# Ignore everything
+*
+
+# Except Claude upgrades
+!.gitignore
+!commands/
+!commands/**
+!plugins/
+!plugins/**
+!skills/
+!skills/**
+!TODO/
+!TODO/**
+
+# Except default customizations
+!settings.json
+!CLAUDE.md
+!README.md
+
+# Exclude plugin marketplace clones and local paths
+plugins/marketplaces/
+plugins/known_marketplaces.json
