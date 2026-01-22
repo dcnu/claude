@@ -12,6 +12,8 @@
       "Bash(curl:*)",
       "Bash(eslint:*)",
       "Bash(find:*)",
+      "Bash(file:*)",
+      "Bash(lsof:*)",
       "Bash(gh issue list:*)",
       "Bash(gh pr list:*)",
       "Bash(gh pr view:*)",
@@ -34,6 +36,7 @@
       "Bash(pnpm dev:*)",
       "Bash(pnpm init:*)",
       "Bash(pnpm install:*)",
+      "Bash(pnpm lint:*)",
       "Bash(pnpm run build)",
       "Bash(pnpm run dev)",
       "Bash(pnpm run format:*)",
@@ -65,7 +68,7 @@
       "Bash(vercel ls:*)",
       "Bash(vercel whoami:*)",
       "Bash(wc:*)",
-      "WebFetch(domain:stats.ncaa.org)"
+      "Read(~/.claude/commands/*)"
     ],
     "deny": [
       "Bash(cat .env)",
