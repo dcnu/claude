@@ -1,15 +1,14 @@
 # Claude Code
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in any repository.
-
 Added memories should be appended to this document, in the end section titled `Memory`.
 
 ## About Me
-I am a solo developer. I do not use timelines or project calendars.
+- I am a solo developer
+- I do not use timelines or project calendars.
 
-## Authorship
-- Copyright: Mere Animals LLC
-- Email contact: mereanimals@gmail.com
+## Authorsh
+- Copyright: github.com/dcnu
+- Prompt user for the correct contact email
 
 ## About You
 - Succinct, unemotional
@@ -17,21 +16,13 @@ I am a solo developer. I do not use timelines or project calendars.
 - No exclamation points or emojis
 
 ### Coding Style
-- **Iterative development**: build incrementally, one service at a time
-- **Build production-ready UI from the start**: not placeholder demos
+- **Design before code**: think through architecture before implementing
 - **No premature optimization**: optimize only after measuring performance
+- **Iterative development**: build incrementally, one service at a time
 - **Single responsibility**: each service should have one well-defined purpose
 - **Always test**: write tests before declaring implementation complete
-- **Design before code**: think through architecture before implementing
+- **Build production-ready UI from the start**: not placeholder demos
 - **Keep summaries concise**: explain code edits and their benefits in as few words as possible
-
-* * * * * * * * * * * * * * * * * * * *
-
-# Temporary Guidance
-
-We recently migrated to a global package manager (`pnpm`) for Node.js projects.
-
-If `dependencies-reinstalled.txt` exists in the directory or subdirectories, test the build before deploying or committing changes to git.
 
 * * * * * * * * * * * * * * * * * * * *
 
@@ -39,32 +30,13 @@ If `dependencies-reinstalled.txt` exists in the directory or subdirectories, tes
 
 ## Tech Stack
 Unless specified otherwise, use:
-- **Frontend**: Next.js 16.0+ with App Router, TypeScript, TailwindCSS
+- **Frontend**: Next.js 16.1+ with App Router, TypeScript, TailwindCSS
   - **Sometimes:** Vue, Inertia.js
 - **Backend**: Node.js 25+, API routes in Next.js
 - **Database - local**: PostgreSQL, Prisma
 - **Database - production**: Supabase
 - **Deployment**: Vercel
 - **UI**: extend Tailwind default theme, shadcn/ui components, Lucide React icons
-
-## Directory Structure
-```
-root/
-├── .gitignore
-├── README.md
-├── archive/                # Unused files; preserved for version control
-├── TODO/
-│   ├── requirements.md     # Product overview; never edit
-│   ├── architecture.md     # Repo overview; never delete
-│   └── tasks.md            # Outstanding items and next steps
-├── src/
-│   ├── app/                # Next.js pages (App Router)
-│   ├── components/         # React components
-│   ├── lib/                # Utilities
-│   └── types/              # TypeScript types
-├── tests/
-└── output/                 # Generated files
-```
 
 ## Setup Process
 1. Clarify if tool is CLI-only, or requires web app
@@ -86,6 +58,25 @@ root/
 - Authorize me as a user on any project for testing
   - Ask for my personal email address
 
+## Directory Structure
+```
+root/
+├── .gitignore
+├── README.md
+├── archive/                # Unused files; preserved for version control
+├── TODO/
+│   ├── requirements.md     # Product overview; never edit
+│   ├── architecture.md     # Repo overview; never delete
+│   └── tasks.md            # Outstanding items and next steps
+├── src/
+│   ├── app/                # Next.js pages (App Router)
+│   ├── components/         # React components
+│   ├── lib/                # Utilities
+│   └── types/              # TypeScript types
+├── tests/
+└── output/                 # Generated files
+```
+
 * * * * * * * * * * * * * * * * * * * *
 
 # Development Standards
@@ -94,7 +85,7 @@ root/
 - `brew` for system packages
 
 ### Javascript Package Management
-Use `pnpm` for all Node.js projects, not `npm` or `yarn`.
+- Use `pnpm` for Node.js projects, not `npm` or `yarn`.
 
 Commands:
 - Install dependencies: `pnpm install`
@@ -103,11 +94,12 @@ Commands:
 - Remove package: `pnpm remove <package>`
 - Run scripts: `pnpm run <script>` or `pnpm <script>`
 
-Never create or modify `package-lock.json`. Use `pnpm-lock.yaml` only.
+- Use `pnpm-lock.yaml` only.
+- Never create or modify `package-lock.json`.
 
 ### Python Package Management
 
-Use `uv` for all Python projects. Do not install packages globally with `pip`.
+Use `uv` for Python projects. Do not install packages globally with `pip`.
 
 Setup:
 - Create venv: `uv venv`
@@ -122,17 +114,17 @@ Commands:
 Use virtual environments in project directories (`.venv`).
 
 ## Pre-Build Validation
-Run before every `npm run build`:
+Run before every `pnpm run build`:
 ```bash
-npm run lint      # Cok ode style and bugs
-tsc --noEmit      # Type checking
-npm test          # Unit tests
+pnpm run lint      # Check code style and bugs
+tsc --noEmit       # Type checking
+pnpm test          # Unit tests
 ```
 
 Build must fail if any of these fail. Add to `package.json`:
 ```json
 "scripts": {
-  "prebuild": "npm run lint && tsc --noEmit && npm test"
+  "prebuild": "pnpm run lint && tsc --noEmit && pnpm test"
 }
 ```
 
@@ -153,20 +145,7 @@ Build must fail if any of these fail. Add to `package.json`:
 - Remove authorship from commit messages
 
 ### .gitignore
-
-The `.gitignore` file should always include these files and directories:
-
-```
-# Project specific
-.cursor*
-.claude*
-CLAUDE.md
-TODO*
-archive*
-
-# Environment files
-.env*
-```
+- Use the `/gitignore` command to create a `.gitignore` file
 
 ## Security
 - Never read, display, or output contents of .env files (except `.env.example`)
@@ -303,31 +282,12 @@ All components should:
 - **Keys:** `camelCase`
 - Use Prettier for formatting
 
-## Output Files
-Format: `Source-Title-date.ext`
-- Use `-` as delimiter
-- `PascalCase` for titles
-- `PascalCase` for sources, including authors, firms, or entities
-  - For people, use LastnameFirstname (e.g. SmithJohn)
-  - For sources that are abbreviations (e.g. BCG), use `UPPERCASE`
-  - If unknown, omit the source
-- Accepted formats for dates
-  - `YYMMDD` if full date is known
-  - `YYYY-Qn` (e.g. 2025-Q3) for quarterly content
-  - `YYYY-Month` (e.g. 2025-July) if only year and month known
-  - `YYYY` if only year known 
-- Never overwrite without `--force`
-
 * * * * * * * * * * * * * * * * * * * *
 
 # Documentation
 
 ## README Requirements
-- Project description and purpose
-- Installation instructions
-- Usage examples with CLI arguments
-- Environment setup requirements
-- Testing instructions
+- Use the `/create-readme` command to create `README.md`
 
 ## Code Documentation
 - **Python**: Google/NumPy docstring format

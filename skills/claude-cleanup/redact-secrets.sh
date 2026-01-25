@@ -32,13 +32,13 @@ echo ""
 count_secrets() {
 	local f="$1"
 	local count=0
-	count=$((count + $(grep -coE 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'sk-[A-Za-z0-9]{20,}' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'sk-ant-[A-Za-z0-9_-]{20,}' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'gh[poas]_[A-Za-z0-9]{36}' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'AKIA[0-9A-Z]{16}' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'sk_(live|test)_[A-Za-z0-9]{24,}' "$f" 2>/dev/null || echo 0)))
-	count=$((count + $(grep -coE 'xox[bp]-[A-Za-z0-9-]+' "$f" 2>/dev/null || echo 0)))
+	count=$((count + $(grep -oE 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'sk-[A-Za-z0-9]{20,}' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'sk-ant-[A-Za-z0-9_-]{20,}' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'gh[poas]_[A-Za-z0-9]{36}' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'AKIA[0-9A-Z]{16}' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'sk_(live|test)_[A-Za-z0-9]{24,}' "$f" 2>/dev/null | wc -l | tr -d ' ')))
+	count=$((count + $(grep -oE 'xox[bp]-[A-Za-z0-9-]+' "$f" 2>/dev/null | wc -l | tr -d ' ')))
 	echo "$count"
 }
 
