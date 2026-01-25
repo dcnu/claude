@@ -1,3 +1,9 @@
+---
+name: kill-ports
+description: Find and kill processes listening on TCP ports
+disable-model-invocation: true
+---
+
 # Kill Ports
 
 Find and kill processes listening on TCP ports.

@@ -1,3 +1,10 @@
+---
+name: sync-starter
+description: Sync improvements from current project to starter template
+argument-hint: [--dry-run] [--gitignore] [--robots] [--claude] [--no-push]
+disable-model-invocation: true
+---
+
 # Sync to Starter Template
 
 Extract lessons learned from the current project and sync improvements back to the starter template repository.

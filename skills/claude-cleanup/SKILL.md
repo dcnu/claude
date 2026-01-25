@@ -1,3 +1,9 @@
+---
+name: claude-cleanup
+description: Scan and redact secrets from Claude memory files
+disable-model-invocation: true
+---
+
 # Claude Cleanup
 
 Scan and redact secrets from Claude's memory files.
@@ -9,12 +15,12 @@ Scan and redact secrets from Claude's memory files.
 ## Step 1: Run Scan
 
 ```bash
-~/.claude/commands/claude-cleanup/scan-secrets.sh ~/.claude
+~/.claude/skills/claude-cleanup/scan-secrets.sh ~/.claude
 ```
 
 If `$CWD` differs from `~/.claude`, also scan:
 ```bash
-~/.claude/commands/claude-cleanup/scan-secrets.sh "$CWD/.claude"
+~/.claude/skills/claude-cleanup/scan-secrets.sh "$CWD/.claude"
 ```
 
 ## Step 2: Review Results
@@ -34,14 +40,14 @@ Options:
 
 For each file to redact:
 ```bash
-~/.claude/commands/claude-cleanup/redact-secrets.sh <file>
+~/.claude/skills/claude-cleanup/redact-secrets.sh <file>
 ```
 
 ## Step 4: Verify
 
 Re-run scan to confirm cleanup:
 ```bash
-~/.claude/commands/claude-cleanup/scan-secrets.sh ~/.claude
+~/.claude/skills/claude-cleanup/scan-secrets.sh ~/.claude
 ```
 
 Report results. If secrets remain, offer to continue.
