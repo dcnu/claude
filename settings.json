@@ -13,6 +13,27 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Funk.aiff"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Blow.aiff"
+          }
+        ]
+      }
     ]
   },
   "includeCoAuthoredBy": false,
@@ -93,9 +114,9 @@
       "Bash(brew info:*)",
       "Bash(brew list:*)",
       "Bash(which:*)",
-      "Read(~/.claude/commands/*)",
       "Read(~/.claude/plugins/*)",
-      "Read(~/.claude/skills/*)"
+      "Read(~/.claude/skills/*)",
+      "Bash(~/.claude/skills/*)"
     ],
     "deny": [
       "Bash(cat .env)",
