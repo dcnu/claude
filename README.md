@@ -15,8 +15,7 @@ Personal configuration for [Claude Code](https://claude.ai/code).
     ├── gitignore/         # Generate .gitignore based on project type
     ├── kill-ports/        # Find and kill processes on ports
     ├── robots/            # Generate robots.txt for websites
-    ├── security-audit/    # Security scanning workflow
-    └── sync-starter/      # Sync improvements to starter template
+    └── security-audit/    # Security scanning workflow
 ```
 
 ## Skills
@@ -30,4 +29,3 @@ Personal configuration for [Claude Code](https://claude.ai/code).
 | `/kill-ports` | Find and kill processes listening on TCP ports |
 | `/robots` | Generate robots.txt for websites |
 | `/security-audit` | Run security checks (dependencies, secrets, logs) |
-| `/sync-starter` | Push improvements back to starter template |
