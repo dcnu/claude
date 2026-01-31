@@ -59,7 +59,6 @@
 			"Bash(head *)",
 			"Bash(ls *)",
 			"Bash(mkdir *)",
-			"Bash(mv *)",
 			"Bash(open *)",
 			"Bash(tail *)",
 			"Bash(touch *)",
@@ -75,17 +74,13 @@
 			"Bash(gh pr view *)",
 			"Bash(gh repo view *)",
 			"Bash(eslint *)",
-			"Bash(npx shadcn@latest add *)",
-			"Bash(pnpm add *)",
 			"Bash(pnpm build *)",
 			"Bash(pnpm dev *)",
 			"Bash(pnpm exec eslint *)",
 			"Bash(pnpm exec tsc *)",
 			"Bash(pnpm init *)",
-			"Bash(pnpm install *)",
 			"Bash(pnpm lint *)",
 			"Bash(pnpm outdated *)",
-			"Bash(pnpm remove *)",
 			"Bash(pnpm run build *)",
 			"Bash(pnpm run dev *)",
 			"Bash(pnpm run format *)",
@@ -97,7 +92,6 @@
 			"Bash(pnpm why *)",
 			"Bash(prettier *)",
 			"Bash(tsc --noEmit *)",
-			"Bash(pip3 install *)",
 			"Bash(py *)",
 			"Bash(pytest *)",
 			"Bash(python *)",
@@ -105,7 +99,6 @@
 			"Bash(ruff *)",
 			"Bash(source .venv/bin/activate *)",
 			"Bash(uv pip freeze *)",
-			"Bash(uv sync *)",
 			"Bash(uv venv *)",
 			"Bash(prisma format *)",
 			"Bash(prisma generate *)",
@@ -124,7 +117,12 @@
 			"Bash(vercel logs *)",
 			"Bash(vercel ls *)",
 			"Bash(vercel whoami *)",
-			"Bash(brew *)",
+			"Bash(brew info *)",
+			"Bash(brew list *)",
+			"Bash(brew search *)",
+			"Bash(brew services *)",
+			"Bash(brew upgrade *)",
+			"Bash(brew --version *)",
 			"Bash(curl *)",
 			"Bash(lsof *)",
 			"Bash(which *)",
@@ -148,10 +146,14 @@
 			"WebFetch(domain:vercel.com)"
 		],
 		"ask": [
-			"Bash(pnpm install *)",
+			"Bash(brew install *)",
+			"Bash(brew uninstall *)",
+			"Bash(mv *)",
+			"Bash(pip3 install *)",
 			"Bash(pnpm add *)",
+			"Bash(pnpm install *)",
 			"Bash(pnpm remove *)",
-			"Bash(mv *)"
+			"Bash(uv sync *)"
 		],
 		"deny": [
 			"Bash(cat .env)",
@@ -177,7 +179,11 @@
 			"Bash(prisma migrate reset *)",
 			"Bash(supabase db reset *)",
 			"Bash(supabase projects delete *)",
-			"Bash(supabase stop *)"
+			"Bash(supabase stop *)",
+			"Bash(find * -delete *)",
+			"Bash(git clean *)",
+			"Bash(pip install *)",
+			"Bash(trash *)"
 		]
 	}
 }
