@@ -1,12 +1,7 @@
 ---
 name: gitignore
-description: Generate .gitignore based on detected project type when initializing a git repo
-hooks:
-  PostToolUse:
-    - matcher: "Bash"
-      hooks:
-        - type: command
-          command: "~/.claude/skills/gitignore/scripts/detect-git-init.sh"
+description: Generate or update .gitignore for the current project. Use when initializing repos, adding new dependencies, or when user asks about ignoring files.
+allowed-tools: Bash(python3 ~/.claude/skills/gitignore/scripts/*), Bash(~/.claude/skills/gitignore/scripts/*), Read, Write
 ---
 
 # Generate .gitignore

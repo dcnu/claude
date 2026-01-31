@@ -2,6 +2,7 @@
 name: claude-cleanup
 description: Scan and redact secrets from Claude memory files
 disable-model-invocation: true
+allowed-tools: Bash(~/.claude/skills/claude-cleanup/scripts/*)
 ---
 
 # Claude Cleanup

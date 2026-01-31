@@ -1,6 +1,8 @@
 ---
 name: robots
 description: Generate a comprehensive robots.txt for a website or web app
+disable-model-invocation: true
+allowed-tools: Read, Write, WebFetch
 ---
 
 Generate a robots.txt file based on user's desired restrictiveness level.

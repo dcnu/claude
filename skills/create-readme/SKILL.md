@@ -1,14 +1,7 @@
 ---
 name: create-readme
-description: Generate README.md and LICENSE when initializing a git repo
-hooks:
-  PostToolUse:
-    - matcher: "Bash"
-      hooks:
-        - type: command
-          command: "~/.claude/skills/create-readme/scripts/detect-git-init.sh"
-        - type: command
-          command: "~/.claude/skills/create-readme/scripts/check-readme-staleness.sh"
+description: Generate or update README.md and LICENSE. Use when initializing repos, after major changes, or when user asks about documentation.
+allowed-tools: Bash(~/.claude/skills/create-readme/scripts/*), Read, Write
 ---
 
 # Create README

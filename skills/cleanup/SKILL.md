@@ -2,6 +2,8 @@
 name: cleanup
 description: Rename files to follow naming convention Source-Title-date.ext
 argument-hint: [directory] [--dry-run] [--force] [--recursive]
+disable-model-invocation: true
+allowed-tools: Bash(python3 ~/.claude/skills/cleanup/scripts/*)
 ---
 
 # Cleanup - File Renaming

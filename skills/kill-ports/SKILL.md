@@ -2,6 +2,7 @@
 name: kill-ports
 description: Find and kill processes listening on TCP ports
 disable-model-invocation: true
+allowed-tools: Bash(lsof *), Bash(kill *)
 ---
 
 # Kill Ports

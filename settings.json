@@ -34,6 +34,18 @@
 					}
 				]
 			}
+		],
+		"PreToolUse": [
+			{
+				"matcher": "Bash",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "~/.claude/skills/gitignore/scripts/precommit-hook.sh",
+						"timeout": 5000
+					}
+				]
+			}
 		]
 	},
 	"attribution": {
