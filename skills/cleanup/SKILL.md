@@ -42,7 +42,7 @@ This skill uses a two-phase approach for speed and user control.
 
 2. Run the rename script to get categorized suggestions:
    ```bash
-   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/rename-files.py --list --new-only [directory]
+   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/scripts/rename-files.py --list --new-only [directory]
    ```
 
 3. The script outputs JSON with categorized suggestions:
@@ -75,13 +75,13 @@ This skill uses a two-phase approach for speed and user control.
 
 6. Execute selected auto-renames:
    ```bash
-   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/rename-files.py --rename [--force] [directory]
+   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/scripts/rename-files.py --rename [--force] [directory]
    ```
    Note: Pass only the selected files' paths, not all suggestions.
 
 7. Record skipped files in history:
    ```bash
-   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/rename-files.py --record-skip <filepath>
+   python3 $CLAUDE_PROJECT_DIR/skills/cleanup/scripts/rename-files.py --record-skip <filepath>
    ```
 
 ### Phase 2: LLM Review (Optional)
@@ -123,7 +123,7 @@ The script maintains history at `~/.claude/cleanup-history.json`:
 
 To clear history:
 ```bash
-python3 $CLAUDE_PROJECT_DIR/skills/cleanup/rename-files.py --clear-history
+python3 $CLAUDE_PROJECT_DIR/skills/cleanup/scripts/rename-files.py --clear-history
 ```
 
 ## Known Sources

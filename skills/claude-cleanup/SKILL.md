@@ -15,12 +15,12 @@ Scan and redact secrets from Claude's memory files.
 ## Step 1: Run Scan
 
 ```bash
-~/.claude/skills/claude-cleanup/scan-secrets.sh ~/.claude
+~/.claude/skills/claude-cleanup/scripts/scan-secrets.sh ~/.claude
 ```
 
 If `$CWD` differs from `~/.claude`, also scan:
 ```bash
-~/.claude/skills/claude-cleanup/scan-secrets.sh "$CWD/.claude"
+~/.claude/skills/claude-cleanup/scripts/scan-secrets.sh "$CWD/.claude"
 ```
 
 ## Step 2: Review Results
@@ -40,14 +40,14 @@ Options:
 
 For each file to redact:
 ```bash
-~/.claude/skills/claude-cleanup/redact-secrets.sh <file>
+~/.claude/skills/claude-cleanup/scripts/redact-secrets.sh <file>
 ```
 
 ## Step 4: Verify
 
 Re-run scan to confirm cleanup:
 ```bash
-~/.claude/skills/claude-cleanup/scan-secrets.sh ~/.claude
+~/.claude/skills/claude-cleanup/scripts/scan-secrets.sh ~/.claude
 ```
 
 Report results. If secrets remain, offer to continue.

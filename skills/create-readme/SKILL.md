@@ -6,9 +6,9 @@ hooks:
     - matcher: "Bash"
       hooks:
         - type: command
-          command: "~/.claude/skills/create-readme/detect-git-init.sh"
+          command: "~/.claude/skills/create-readme/scripts/detect-git-init.sh"
         - type: command
-          command: "~/.claude/skills/create-readme/check-readme-staleness.sh"
+          command: "~/.claude/skills/create-readme/scripts/check-readme-staleness.sh"
 ---
 
 # Create README
@@ -19,7 +19,7 @@ Generate a comprehensive README.md for the current project.
 
 1. Run the detection script to identify project type and metadata:
    ```bash
-   bash $CLAUDE_PROJECT_DIR/skills/create-readme/detect-project.sh
+   bash $CLAUDE_PROJECT_DIR/skills/create-readme/scripts/detect-project.sh
    ```
 
 2. Review the detected information and prompt user for any missing details:
@@ -40,6 +40,8 @@ Generate a comprehensive README.md for the current project.
    - **Environment Setup** - if `.env.example` exists, document required variables
    - **Usage** - CLI commands, local server, or public URL (if applicable)
    - **Testing** - test commands based on project type
+   - **Code Documentation** - standards based on project type (if code files exist)
+   - **API Documentation** - request/response examples (if API routes detected)
    - **Project Structure** - generate from directory tree
    - **License** - user-selected
 
@@ -108,6 +110,22 @@ The script outputs JSON with detected project metadata:
 ### Test Commands
 - **Node.js**: `pnpm test`
 - **Python**: `pytest`
+
+### Code Documentation
+Include only if code files exist in the project.
+
+- **Python projects**: Google/NumPy docstring format
+- **JavaScript/TypeScript projects**: JSDoc format
+- Guidelines: purpose, parameters, return values, examples
+- Document complex logic only
+
+### API Documentation
+Include only if API routes are detected (`src/app/api/`, `pages/api/`, or framework is fastapi/flask/express).
+
+- Request/response examples
+- Authentication requirements
+- Error response formats
+- OpenAPI/Swagger for REST APIs
 
 ## License Templates
 

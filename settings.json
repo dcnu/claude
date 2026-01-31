@@ -1,148 +1,175 @@
 {
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/skills/create-readme/check-readme-exists.sh"
-          },
-          {
-            "type": "command",
-            "command": "~/.claude/skills/gitignore/check-gitignore-exists.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Funk.aiff"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Blow.aiff"
-          }
-        ]
-      }
-    ]
-  },
-  "includeCoAuthoredBy": false,
-  "model": "opus",
-  "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "stable",
-  "minimumVersion": "2.1.7",
-  "permissions": {
-    "allow": [
-      "Bash(cat:*)",
-      "Bash(chmod:*)",
-      "Bash(cp:*)",
-      "Bash(diff:*)",
-      "Bash(file:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(head:*)",
-      "Bash(ls:*)",
-      "Bash(mkdir:*)",
-      "Bash(mv:*)",
-      "Bash(open:*)",
-      "Bash(tail:*)",
-      "Bash(touch:*)",
-      "Bash(tree:*)",
-      "Bash(wc:*)",
-      "Bash(git check-ignore:*)",
-      "Bash(git checkout:*)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(git status:*)",
-      "Bash(gh issue list:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh repo view:*)",
-      "Bash(eslint:*)",
-      "Bash(npx shadcn@latest add:*)",
-      "Bash(pnpm add:*)",
-      "Bash(pnpm build:*)",
-      "Bash(pnpm dev:*)",
-      "Bash(pnpm init:*)",
-      "Bash(pnpm install:*)",
-      "Bash(pnpm lint:*)",
-      "Bash(pnpm outdated:*)",
-      "Bash(pnpm remove:*)",
-      "Bash(pnpm run format:*)",
-      "Bash(pnpm run typecheck:*)",
-      "Bash(pnpm test:*)",
-      "Bash(pnpm tsc:*)",
-      "Bash(pnpm why:*)",
-      "Bash(prettier:*)",
-      "Bash(tsc --noEmit:*)",
-      "Bash(pip3 install:*)",
-      "Bash(pytest:*)",
-      "Bash(python3:*)",
-      "Bash(ruff:*)",
-      "Bash(uv pip freeze:*)",
-      "Bash(uv sync:*)",
-      "Bash(uv venv:*)",
-      "Bash(prisma format:*)",
-      "Bash(prisma generate:*)",
-      "Bash(prisma studio:*)",
-      "Bash(prisma validate:*)",
-      "Bash(psql -c SELECT:*)",
-      "Bash(psql -c \\d:*)",
-      "Bash(supabase db diff:*)",
-      "Bash(supabase db dump:*)",
-      "Bash(supabase gen types:*)",
-      "Bash(supabase migration list:*)",
-      "Bash(supabase migration new:*)",
-      "Bash(supabase start:*)",
-      "Bash(supabase status:*)",
-      "Bash(vercel inspect:*)",
-      "Bash(vercel logs:*)",
-      "Bash(vercel ls:*)",
-      "Bash(vercel whoami:*)",
-      "Bash(curl:*)",
-      "Bash(lsof:*)",
-      "Bash(brew info:*)",
-      "Bash(brew list:*)",
-      "Bash(which:*)",
-      "Read(~/.claude/plugins/*)",
-      "Read(~/.claude/skills/*)",
-      "Bash(~/.claude/skills/*)"
-    ],
-    "deny": [
-      "Bash(cat .env)",
-      "Bash(cat .env.development:*)",
-      "Bash(cat .env.local:*)",
-      "Bash(cat .env.production:*)",
-      "Bash(echo $:*)",
-      "Bash(env:*)",
-      "Bash(head .env:*)",
-      "Bash(less .env:*)",
-      "Bash(more .env:*)",
-      "Bash(printenv:*)",
-      "Bash(tail .env:*)",
-      "Bash(curl --data:*)",
-      "Bash(curl -d:*)",
-      "Bash(curl -X DELETE:*)",
-      "Bash(curl -X PATCH:*)",
-      "Bash(curl -X POST:*)",
-      "Bash(curl -X PUT:*)",
-      "Bash(rm:*)",
-      "Bash(rm -rf:*)",
-      "Bash(rmdir:*)",
-      "Bash(prisma migrate reset:*)",
-      "Bash(supabase db reset:*)",
-      "Bash(supabase projects delete:*)",
-      "Bash(supabase stop:*)"
-    ]
-  }
+	"hooks": {
+		"SessionStart": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "~/.claude/skills/create-readme/scripts/check-readme-exists.sh"
+					},
+					{
+						"type": "command",
+						"command": "~/.claude/skills/gitignore/scripts/check-gitignore-exists.sh"
+					}
+				]
+			}
+		],
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "afplay /System/Library/Sounds/Funk.aiff"
+					}
+				]
+			}
+		],
+		"Notification": [
+			{
+				"matcher": "idle_prompt",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "afplay /System/Library/Sounds/Blow.aiff"
+					}
+				]
+			}
+		]
+	},
+	"includeCoAuthoredBy": false,
+	"model": "opus",
+	"alwaysThinkingEnabled": true,
+	"autoUpdatesChannel": "stable",
+	"minimumVersion": "2.1.7",
+	"permissions": {
+		"allow": [
+			"Bash(cat:*)",
+			"Bash(chmod:*)",
+			"Bash(cp:*)",
+			"Bash(diff:*)",
+			"Bash(file:*)",
+			"Bash(find:*)",
+			"Bash(grep:*)",
+			"Bash(head:*)",
+			"Bash(ls:*)",
+			"Bash(mkdir:*)",
+			"Bash(mv:*)",
+			"Bash(open:*)",
+			"Bash(tail:*)",
+			"Bash(touch:*)",
+			"Bash(tree:*)",
+			"Bash(wc:*)",
+			"Bash(git check-ignore:*)",
+			"Bash(git checkout:*)",
+			"Bash(git diff:*)",
+			"Bash(git log:*)",
+			"Bash(git status:*)",
+			"Bash(gh issue list:*)",
+			"Bash(gh pr list:*)",
+			"Bash(gh pr view:*)",
+			"Bash(gh repo view:*)",
+			"Bash(eslint:*)",
+			"Bash(npx shadcn@latest add:*)",
+			"Bash(pnpm add:*)",
+			"Bash(pnpm build:*)",
+			"Bash(pnpm dev:*)",
+			"Bash(pnpm exec eslint:*)",
+			"Bash(pnpm exec tsc:*)",
+			"Bash(pnpm init:*)",
+			"Bash(pnpm install:*)",
+			"Bash(pnpm lint:*)",
+			"Bash(pnpm outdated:*)",
+			"Bash(pnpm remove:*)",
+			"Bash(pnpm run build:*)",
+			"Bash(pnpm run dev:*)",
+			"Bash(pnpm run format:*)",
+			"Bash(pnpm run lint:*)",
+			"Bash(pnpm run test:*)",
+			"Bash(pnpm run typecheck:*)",
+			"Bash(pnpm test:*)",
+			"Bash(pnpm tsc:*)",
+			"Bash(pnpm why:*)",
+			"Bash(prettier:*)",
+			"Bash(tsc --noEmit:*)",
+			"Bash(pip3 install:*)",
+			"Bash(py:*)",
+			"Bash(pytest:*)",
+			"Bash(python:*)",
+			"Bash(python3:*)",
+			"Bash(ruff:*)",
+			"Bash(source .venv/bin/activate:*)",
+			"Bash(uv pip freeze:*)",
+			"Bash(uv sync:*)",
+			"Bash(uv venv:*)",
+			"Bash(prisma format:*)",
+			"Bash(prisma generate:*)",
+			"Bash(prisma studio:*)",
+			"Bash(prisma validate:*)",
+			"Bash(psql -c SELECT:*)",
+			"Bash(psql -c \\d:*)",
+			"Bash(supabase db diff:*)",
+			"Bash(supabase db dump:*)",
+			"Bash(supabase gen types:*)",
+			"Bash(supabase migration list:*)",
+			"Bash(supabase migration new:*)",
+			"Bash(supabase start:*)",
+			"Bash(supabase status:*)",
+			"Bash(vercel inspect:*)",
+			"Bash(vercel logs:*)",
+			"Bash(vercel ls:*)",
+			"Bash(vercel whoami:*)",
+			"Bash(brew:*)",
+			"Bash(curl:*)",
+			"Bash(lsof:*)",
+			"Bash(which:*)",
+			"Read(~/.claude/plugins/*)",
+			"Read(~/.claude/skills/*)",
+			"Bash(~/.claude/skills/*)",
+			"WebSearch",
+			"WebFetch(domain:chakra-ui.com)",
+			"WebFetch(domain:developer.mozilla.org)",
+			"WebFetch(domain:github.com)",
+			"WebFetch(domain:githubusercontent.com)",
+			"WebFetch(domain:nextjs.org)",
+			"WebFetch(domain:nodejs.org)",
+			"WebFetch(domain:prisma.io)",
+			"WebFetch(domain:react.dev)",
+			"WebFetch(domain:supabase.com)",
+			"WebFetch(domain:tailwindcss.com)",
+			"WebFetch(domain:typescriptlang.org)",
+			"WebFetch(domain:vercel.com)"
+		],
+		"ask": [
+			"Bash(pnpm install:*)",
+			"Bash(pnpm add:*)",
+			"Bash(pnpm remove:*)",
+			"Bash(mv:*)"
+		],
+		"deny": [
+			"Bash(cat .env)",
+			"Bash(cat .env.development:*)",
+			"Bash(cat .env.local:*)",
+			"Bash(cat .env.production:*)",
+			"Bash(echo $:*)",
+			"Bash(env:*)",
+			"Bash(head .env:*)",
+			"Bash(less .env:*)",
+			"Bash(more .env:*)",
+			"Bash(printenv:*)",
+			"Bash(tail .env:*)",
+			"Bash(curl --data:*)",
+			"Bash(curl -d:*)",
+			"Bash(curl -X DELETE:*)",
+			"Bash(curl -X PATCH:*)",
+			"Bash(curl -X POST:*)",
+			"Bash(curl -X PUT:*)",
+			"Bash(rm:*)",
+			"Bash(rm -rf:*)",
+			"Bash(rmdir:*)",
+			"Bash(prisma migrate reset:*)",
+			"Bash(supabase db reset:*)",
+			"Bash(supabase projects delete:*)",
+			"Bash(supabase stop:*)"
+		]
+	}
 }

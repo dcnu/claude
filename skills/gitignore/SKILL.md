@@ -6,7 +6,7 @@ hooks:
     - matcher: "Bash"
       hooks:
         - type: command
-          command: "~/.claude/skills/gitignore/detect-git-init.sh"
+          command: "~/.claude/skills/gitignore/scripts/detect-git-init.sh"
 ---
 
 # Generate .gitignore
@@ -26,7 +26,7 @@ This skill operates in three modes:
 
 1. **Run analysis script**:
    ```bash
-   python3 ~/.claude/skills/gitignore/analyze-project.py "$(pwd)"
+   python3 ~/.claude/skills/gitignore/scripts/analyze-project.py "$(pwd)"
    ```
 
 2. **Parse JSON output** which contains:
@@ -92,7 +92,7 @@ The hook is configured in `~/.claude/settings.json`:
         "hooks": [
           {
             "type": "command",
-            "command": "bash ~/.claude/skills/gitignore/precommit-hook.sh",
+            "command": "bash ~/.claude/skills/gitignore/scripts/precommit-hook.sh",
             "timeout": 5
           }
         ]
@@ -104,7 +104,7 @@ The hook is configured in `~/.claude/settings.json`:
 
 ### Validation Script
 
-The hook runs `check-gitignore.sh` which:
+The hook runs `scripts/check-gitignore.sh` which:
 1. Gets list of staged files
 2. Checks for critical patterns (secrets, keys, credentials)
 3. Returns JSON with status and issues
@@ -184,5 +184,5 @@ These patterns are checked during pre-commit validation:
 | Script | Purpose |
 |--------|---------|
 | `analyze-project.py` | Comprehensive project analysis, outputs JSON |
-| `check-gitignore.sh` | Fast pre-commit validation (< 500ms) |
+| `scripts/check-gitignore.sh` | Fast pre-commit validation (< 500ms) |
 | `precommit-hook.sh` | Hook wrapper for PreToolUse system |

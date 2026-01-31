@@ -143,7 +143,7 @@ Phase 2 complete.
 Run the package scan script:
 
 ```bash
-~/.claude/skills/security-audit/scan-packages.sh "$CWD"
+~/.claude/skills/security-audit/scripts/scan-packages.sh "$CWD"
 ```
 
 This script:
@@ -268,8 +268,8 @@ Phase 4 complete.
 For each direct dependency, query the OSV database:
 
 ```bash
-~/.claude/skills/security-audit/query-osv.sh npm <package-name> <version>
-~/.claude/skills/security-audit/query-osv.sh PyPI <package-name> <version>
+~/.claude/skills/security-audit/scripts/query-osv.sh npm <package-name> <version>
+~/.claude/skills/security-audit/scripts/query-osv.sh PyPI <package-name> <version>
 ```
 
 Record any vulnerabilities not already found in Phases 2-3.
@@ -329,7 +329,7 @@ Flag any matches for review.
 Run the log review script to check Vercel and Supabase logs:
 
 ```bash
-~/.claude/skills/security-audit/check-logs.sh [vercel-project] [supabase-ref]
+~/.claude/skills/security-audit/scripts/check-logs.sh [vercel-project] [supabase-ref]
 ```
 
 **Extract Supabase project ref from env:**
