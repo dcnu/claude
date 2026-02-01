@@ -143,6 +143,8 @@
 			"Read(~/.claude/skills/*)",
 			"Bash(~/.claude/agents/*)",
 			"Bash(~/.claude/skills/*)",
+			"Bash(python3 ~/.claude/skills/*/scripts/* *)",
+			"Bash(bash ~/.claude/skills/*/scripts/* *)",
 			"WebSearch",
 			"WebFetch(domain:chakra-ui.com)",
 			"WebFetch(domain:developer.mozilla.org)",
