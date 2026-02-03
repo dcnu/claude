@@ -129,6 +129,8 @@
 			"Bash(vercel logs *)",
 			"Bash(vercel ls*)",
 			"Bash(vercel whoami*)",
+			"Bash(mv * */archive/*)",
+			"Bash(mv * archive/*)",
 			"Bash(brew info *)",
 			"Bash(brew list*)",
 			"Bash(brew search *)",
