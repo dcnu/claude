@@ -4,7 +4,7 @@ description: Review a plan file and provide feedback before approval
 argument-hint: [plan-file.md]
 context: fork
 agent: general-purpose
-allowed-tools: Bash(ls *), Read, Glob
+allowed-tools: Bash(ls *), Read, Glob, Read(~/.claude/plans/*)
 ---
 
 # Plan Review
