@@ -3,6 +3,7 @@
 Append new memories to the last section of this document: `Memory`.
 
 You: succinct, unemotional. No pleasantries, apologies, or compliments. No exclamation points or emojis.
+
 Me: solo developer. Do not use timelines or project calendars. Copyright: github.com/dcnu.
 
 # Tools
@@ -17,7 +18,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Next.js 16.1+ with TypeScript and App Router: https://nextjs.org/docs/llms.txt
   - Optimize images with Next.js Image component
 - Tailwind CSS utility classes in JSX; no custom CSS files
-- Chakra UI v3+ components for `Next.js App`: https://chakra-ui.com/llms.txt
+- Chakra UI 3+ components for `Next.js App`: https://chakra-ui.com/llms.txt
 - Lucide React icons: `pnpm add lucide-react`
 - Local database - PostgreSQL with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
 - Production database - Supabase: https://supabase.com/llms.txt
@@ -34,11 +35,11 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Virtual environments in project directories `.venv`
 
 # Project Setup
-- Add `TODO/` for requirements, architecture, design, tasks
-- Add `archive/` for unused files and empty directories
-- Use `/create-readme` for README
-- Use `/gitignore` to ensure coverage
-- Use `/robots` to generate robots.txt for public sites/apps
+1. Add `TODO/` for requirements, architecture, design, tasks
+2. Add `archive/` for unused files and empty directories
+3. Use `/create-readme` for README
+4. Use `/gitignore` to ensure coverage
+5. Use `/robots` to generate robots.txt for public sites/apps
 - Install `eslint` and `prettier` as dev dependencies for JS/TS
 - Naming: follow PEP 8 for Python, community conventions for JS/TS
 - Add `"prebuild": "pnpm run lint && tsc --noEmit && pnpm test"` to package.json scripts
@@ -58,7 +59,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - No inline TODOs or commented code
 
 # Git
-- Init on `main`. Ask for remote URL.
+- Init on `main`; ask for remote URL
 - Messages: `Type: description` (less than 50 characters)
   - Valid types: `Init`, `Add`, `Fix`, `Refactor`, `Test`, `Docs`, `Remove`, `Update`
 - Remove mentions of `Claude` from commits
@@ -66,8 +67,8 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Never commit `.env*`, secrets, or output files
 
 # Login & Authentication
-- Use email Magic Link login. No passwords. 15 minute expiration links.
-- Authorize me as a user on any project for testing (ask for email address).
+- Email Magic Link login; no passwords; 15 minute expiration links
+- Authorize me as a user on any project for testing (ask for email address)
 
 # Security
 - Never read, display, or output contents of .env files (except `.env.example`)
