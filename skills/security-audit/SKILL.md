@@ -5,7 +5,7 @@ argument-hint: [directory]
 disable-model-invocation: true
 context: fork
 agent: general-purpose
-allowed-tools: Bash(gh *), Bash(pnpm *), Bash(uv *), Bash(git *), Bash(grep *), Bash(~/.claude/skills/security-audit/scripts/*), WebSearch, Read, Write
+allowed-tools: Bash(gh *), Bash(pnpm *), Bash(uv *), Bash(git *), Bash(grep *), Bash(mkdir -p */.security-audit/audit-logs), Bash(~/.claude/skills/security-audit/scripts/*), WebSearch, Read, Write
 ---
 
 # Security Audit
