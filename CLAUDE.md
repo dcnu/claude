@@ -20,7 +20,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Tailwind CSS utility classes in JSX; no custom CSS files
 - Chakra UI 3+ components for `Next.js App`: https://chakra-ui.com/llms.txt
 - Lucide React icons: `pnpm add lucide-react`
-- Local database - PostgreSQL with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
+- Local database - PostgreSQL 18+ with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
 - Production database - Supabase: https://supabase.com/llms.txt
 - Deployment - Vercel: https://vercel.com/docs/llms-full.txt
 - Headless browser automation - agent-browser: `pnpm install -g agent-browser`

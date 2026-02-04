@@ -22,16 +22,13 @@ cd "$PROJECT_PATH"
 if [[ -f "package.json" ]]; then
 	echo "=== Node.js Project Detected ==="
 
-	# Check for pnpm-lock.yaml
+	# Check for pnpm-lock.yaml (pnpm only per CLAUDE.md)
 	if [[ -f "pnpm-lock.yaml" ]]; then
 		echo "Running pnpm audit..."
 		pnpm audit --json 2>/dev/null || true
-	elif [[ -f "package-lock.json" ]]; then
-		echo "Running npm audit..."
-		npm audit --json 2>/dev/null || true
-	elif [[ -f "yarn.lock" ]]; then
-		echo "Running yarn audit..."
-		yarn audit --json 2>/dev/null || true
+	elif [[ -f "package-lock.json" ]] || [[ -f "yarn.lock" ]]; then
+		echo "Warning: Found npm/yarn lockfile. Per project standards, use pnpm exclusively." >&2
+		echo "Skipping audit. Convert to pnpm with: rm package-lock.json yarn.lock && pnpm install" >&2
 	else
 		echo "No lockfile found. Running pnpm install first..."
 		pnpm install --frozen-lockfile 2>/dev/null || pnpm install
@@ -60,12 +57,8 @@ fi
 echo ""
 echo "=== Checking for Outdated Packages ==="
 
-if [[ -f "package.json" ]]; then
-	if [[ -f "pnpm-lock.yaml" ]]; then
-		pnpm outdated --format=json 2>/dev/null || true
-	elif [[ -f "package-lock.json" ]]; then
-		npm outdated --json 2>/dev/null || true
-	fi
+if [[ -f "package.json" ]] && [[ -f "pnpm-lock.yaml" ]]; then
+	pnpm outdated --format=json 2>/dev/null || true
 fi
 
 if [[ -f "pyproject.toml" ]] || [[ -f "requirements.txt" ]]; then
