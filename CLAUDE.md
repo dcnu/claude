@@ -125,3 +125,9 @@ Use this space for information added via the Terminal with a # command. Do not m
   - Do not remove code to avoid finding a permanent solution
 - Set up HTTPS for dev servers, including self-signed certificates (or other best practice)
 - Local PostgreSQL: one shared server via `brew services start postgresql@16`, one database per project (`CREATE DATABASE projectname`), connection string `postgresql://localhost:5432/<dbname>`
+- agent-browser setup complete:
+  - Installed globally: `pnpm install -g agent-browser`
+  - Run `pnpm setup` first if PNPM_HOME not configured
+  - Run `agent-browser install` to download Chromium
+  - Usage: `agent-browser open <url>`, `agent-browser snapshot`, `agent-browser click @ref`
+  - Use `--session <name>` to isolate browser sessions
