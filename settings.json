@@ -48,6 +48,10 @@
 			}
 		]
 	},
+	"env": {
+		"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+	},
+	"teammateMode": "tmux",
 	"attribution": {
 		"commit": "",
 		"pr": ""
@@ -61,6 +65,7 @@
 	"spinnerTipsEnabled": true,
 	"permissions": {
 		"allow": [
+			"Skill(*)",
 			"Bash(cat *)",
 			"Bash(chmod *)",
 			"Bash(cp *)",
@@ -88,10 +93,13 @@
 			"Bash(eslint *)",
 			"Bash(pnpm build*)",
 			"Bash(pnpm dev*)",
+			"Bash(pnpm dlx shadcn@latest add*)",
 			"Bash(pnpm exec eslint *)",
 			"Bash(pnpm exec tsc*)",
 			"Bash(pnpm init*)",
+			"Bash(pnpm eslint*)",
 			"Bash(pnpm lint*)",
+			"Bash(pnpm next build*)",
 			"Bash(pnpm outdated*)",
 			"Bash(pnpm run build*)",
 			"Bash(pnpm run dev*)",
@@ -140,16 +148,17 @@
 			"Bash(curl *)",
 			"Bash(lsof*)",
 			"Bash(which *)",
-			"Read(~/.claude/agents/*)",
-			"Read(~/.claude/plans/*)",
-			"Read(~/.claude/plugins/*)",
-			"Read(~/.claude/skills/*)",
-			"Glob(~/.claude/plans/*)",
-			"Bash(~/.claude/agents/*)",
-			"Bash(~/.claude/skills/*)",
-			"Bash(python3 ~/.claude/skills/*/scripts/* *)",
-			"Bash(bash ~/.claude/skills/*/scripts/* *)",
+			"Read(~/.claude/agents/**)",
+			"Read(~/.claude/plans/**)",
+			"Read(~/.claude/plugins/**)",
+			"Read(~/.claude/skills/**)",
+			"Glob(~/.claude/plans/**)",
+			"Bash(~/.claude/agents/**)",
+			"Bash(~/.claude/skills/**)",
+			"Bash(python3 ~/.claude/skills/**/scripts/** *)",
+			"Bash(bash ~/.claude/skills/**/scripts/** *)",
 			"WebSearch",
+			"WebFetch(domain:ui.shadcn.com)",
 			"WebFetch(domain:chakra-ui.com)",
 			"WebFetch(domain:developer.mozilla.org)",
 			"WebFetch(domain:github.com)",
@@ -172,6 +181,7 @@
 			"WebFetch(domain:www.typescriptlang.org)",
 			"WebFetch(domain:vercel.com)",
 			"WebFetch(domain:sdk.vercel.ai)",
+			"Fetch(domain:ui.shadcn.com)",
 			"Fetch(domain:chakra-ui.com)",
 			"Fetch(domain:developer.mozilla.org)",
 			"Fetch(domain:github.com)",

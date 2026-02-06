@@ -17,8 +17,8 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Node.js 25.5+
 - Next.js 16.1+ with TypeScript and App Router: https://nextjs.org/docs/llms.txt
   - Optimize images with Next.js Image component
-- Tailwind CSS utility classes in JSX; no custom CSS files
-- Chakra UI 3+ components for `Next.js App`: https://chakra-ui.com/llms.txt
+  - Tailwind CSS utility classes in JSX; no custom CSS files
+  - shadcn 3.8+ components: `pnpm dlx shadcn@latest init`; https://ui.shadcn.com/llms.txt
 - Lucide React icons: `pnpm add lucide-react`
 - Local database - PostgreSQL 18+ with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
 - Production database - Supabase: https://supabase.com/llms.txt
@@ -33,6 +33,12 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
   - Never create or modify `package-lock.json`
 - `uv` for Python; do not install globally with `pip`
 - Virtual environments in project directories `.venv`
+
+## Agent teams
+- Docs: https://code.claude.com/docs/en/agent-teams.md
+- Create agent teams with tmux split panes for large, parallelizable requests
+- Each teammate owns different files; use delegate mode to keep the lead coordinating
+- Require plan approval for teammates on complex tasks
 
 # Project Setup
 1. Add `TODO/` for requirements, architecture, design, tasks
@@ -57,13 +63,14 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Split long files and functions
 - Comments only for complex logic
 - No inline TODOs or commented code
+- Move unused files to `archive/`; never use `rm` or `rmdir`
 
 # Git
 - Init on `main`; ask for remote URL
 - Messages: `Type: description` (less than 50 characters)
   - Valid types: `Init`, `Add`, `Fix`, `Refactor`, `Test`, `Docs`, `Remove`, `Update`
 - Remove mentions of `Claude` from commits
-- Create `dependabot.yml` for package upgrades:https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+- Create `dependabot.yml` for package upgrades: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 - Never commit `.env*`, secrets, or output files
 
 # Login & Authentication
@@ -100,11 +107,10 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Pre-render pages when possible
 - Prefer server components over client components
 - ISR for frequently updated content
-- Pair with Tailwind CSS and Chakra UI
+- Pair with Tailwind CSS and shadcn UI components
 - Semantic HTML (`main`, `nav`, `section`)
 - `use client` only when necessary
-- Configure `tailwind.config.ts` upfront
-- Setup `globals.css` with Chakra's CSS variables for theming
+- Configure `tailwind.config.ts` and `globals.css` upfront
 
 # Styling
 - Extend TailwindCSS default theme if none provided in `TODO/`
