@@ -130,7 +130,7 @@ Use this space for information added via the Terminal with a # command. Do not m
 - When told to address a conflict, fix the conflict
   - Do not remove code to avoid finding a permanent solution
 - Set up HTTPS for dev servers, including self-signed certificates (or other best practice)
-- Local PostgreSQL: one shared server via `brew services start postgresql@16`, one database per project (`CREATE DATABASE projectname`), connection string `postgresql://localhost:5432/<dbname>`
+- Local PostgreSQL: one shared server via `brew services start postgresql@18`, one database per project (`CREATE DATABASE projectname`), connection string `postgresql://localhost:5432/<dbname>`
 - agent-browser setup complete:
   - Installed globally: `pnpm install -g agent-browser`
   - Run `pnpm setup` first if PNPM_HOME not configured
