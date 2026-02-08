@@ -24,6 +24,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Production database - Supabase: https://supabase.com/llms.txt
 - Deployment - Vercel: https://vercel.com/docs/llms-full.txt
 - Headless browser automation - agent-browser: `pnpm install -g agent-browser`
+- Containers: Colima, not Docker Desktop
 - Privacy-focused analytics (Plausible/Umami)
 
 ## Package management
@@ -46,9 +47,9 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 3. Use `/create-readme` for README
 4. Use `/gitignore` to ensure coverage
 5. Use `/robots` to generate robots.txt for public sites/apps
-- Install `eslint` and `prettier` as dev dependencies for JS/TS
-- Naming: follow PEP 8 for Python, community conventions for JS/TS
-- Add `"prebuild": "pnpm run lint && tsc --noEmit && pnpm test"` to package.json scripts
+6. Install `eslint` and `prettier` as dev dependencies for JS/TS
+7. Naming: follow PEP 8 for Python, community conventions for JS/TS
+8. Add `"prebuild": "pnpm run lint && tsc --noEmit && pnpm test"` to package.json scripts
 
 # Coding Style
 - Design before code: think through architecture before implementing
@@ -130,10 +131,5 @@ Use this space for information added via the Terminal with a # command. Do not m
 - When told to address a conflict, fix the conflict
   - Do not remove code to avoid finding a permanent solution
 - Set up HTTPS for dev servers, including self-signed certificates (or other best practice)
-- Local PostgreSQL: one shared server via `brew services start postgresql@18`, one database per project (`CREATE DATABASE projectname`), connection string `postgresql://localhost:5432/<dbname>`
-- agent-browser setup complete:
-  - Installed globally: `pnpm install -g agent-browser`
-  - Run `pnpm setup` first if PNPM_HOME not configured
-  - Run `agent-browser install` to download Chromium
-  - Usage: `agent-browser open <url>`, `agent-browser snapshot`, `agent-browser click @ref`
-  - Use `--session <name>` to isolate browser sessions
+- Local PostgreSQL config: see auto memory `MEMORY.md`
+- agent-browser config: see auto memory `MEMORY.md`
