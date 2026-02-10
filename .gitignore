@@ -15,7 +15,8 @@
 !CLAUDE.md
 !README.md
 
-# Exclude plugin marketplace clones and local paths
+# Exclude plugin marketplace clones, caches, and local paths
+plugins/cache/
 plugins/marketplaces/
 plugins/known_marketplaces.json
 

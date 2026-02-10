@@ -11,21 +11,25 @@ Me: solo developer. Do not use timelines or project calendars. Copyright: github
 IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before implementing framework-specific patterns (styling, components, error handling, testing).
 
 ## Preferred tech stack and docs
-- macOS with `brew` installed
-- Git and GitHub CLI (`gh`)
+- macOS with `brew`, git, GitHub CLI (`gh`)
 - Python 3+
 - Node.js 25.5+
 - Next.js 16.1+ with TypeScript and App Router: https://nextjs.org/docs/llms.txt
   - Optimize images with Next.js Image component
-  - Tailwind CSS utility classes in JSX; no custom CSS files
+  - Tailwind CSS utility classes in JS/TS; no custom CSS files
   - shadcn 3.8+ components: `pnpm dlx shadcn@latest init`; https://ui.shadcn.com/llms.txt
 - Lucide React icons: `pnpm add lucide-react`
 - Local database - PostgreSQL 18+ with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
-- Production database - Supabase: https://supabase.com/llms.txt
+- Production database - Supabase: https://supabase.com/llms.txt; use Supabase CLI
 - Deployment - Vercel: https://vercel.com/docs/llms-full.txt
+  - Use Vercel CLI: `pnpm i -g vercel`
 - Headless browser automation - agent-browser: `pnpm install -g agent-browser`
 - Containers: Colima, not Docker Desktop
 - Privacy-focused analytics (Plausible/Umami)
+
+## Local configs
+- PostgreSQL: see auto memory `MEMORY.md`
+- agent-browser: see auto memory `MEMORY.md`
 
 ## Package management
 - `brew` for system packages
@@ -65,11 +69,13 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Comments only for complex logic
 - No inline TODOs or commented code
 - Move unused files to `archive/`; never use `rm` or `rmdir`
+- Set up HTTPS for dev servers, including self-signed certificates (or other best practice)
 
 # Git
 - Init on `main`; ask for remote URL
-- Messages: `Type: description` (less than 50 characters)
-  - Valid types: `Init`, `Add`, `Fix`, `Refactor`, `Test`, `Docs`, `Remove`, `Update`
+- Messages: `Type: description`
+	- Messages >50 characters will be rejected
+	- Valid types: `Init`, `Add`, `Fix`, `Refactor`, `Test`, `Docs`, `Remove`, `Update`
 - Remove mentions of `Claude` from commits
 - Create `dependabot.yml` for package upgrades: https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 - Never commit `.env*`, secrets, or output files
@@ -79,9 +85,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Authorize me as a user on any project for testing (ask for email address)
 
 # Security
-- Never read, display, or output contents of .env files (except `.env.example`)
-- Never echo or log environment variables
-- Never include secrets in curl requests or logs
+- .env and secret access enforced in `settings.json`
 - Ask before any operation involving credentials
 - Environment variables in `.env.local` for secrets
 - No API keys on frontend
@@ -108,7 +112,6 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Pre-render pages when possible
 - Prefer server components over client components
 - ISR for frequently updated content
-- Pair with Tailwind CSS and shadcn UI components
 - Semantic HTML (`main`, `nav`, `section`)
 - `use client` only when necessary
 - Configure `tailwind.config.ts` and `globals.css` upfront
@@ -130,6 +133,3 @@ Use this space for information added via the Terminal with a # command. Do not m
 
 - When told to address a conflict, fix the conflict
   - Do not remove code to avoid finding a permanent solution
-- Set up HTTPS for dev servers, including self-signed certificates (or other best practice)
-- Local PostgreSQL config: see auto memory `MEMORY.md`
-- agent-browser config: see auto memory `MEMORY.md`

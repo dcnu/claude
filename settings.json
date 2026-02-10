@@ -150,17 +150,23 @@
       "Fetch(domain:sdk.vercel.ai)"
     ],
     "deny": [
-      "Bash(cat .env)",
-      "Bash(cat .env.development *)",
-      "Bash(cat .env.local *)",
-      "Bash(cat .env.production *)",
-      "Bash(echo $ *)",
+      "Read(.env*)",
+      "Edit(.env*)",
+      "Grep(path:.env*)",
+      "Bash(cat .env*)",
+      "Bash(cat */.env*)",
+      "Bash(cat ~/.env*)",
+      "Bash(echo $*)",
+      "Bash(env)",
       "Bash(env *)",
-      "Bash(head .env *)",
-      "Bash(less .env *)",
-      "Bash(more .env *)",
-      "Bash(printenv *)",
-      "Bash(tail .env *)",
+      "Bash(head .env*)",
+      "Bash(less .env*)",
+      "Bash(more .env*)",
+      "Bash(tail .env*)",
+      "Bash(printenv*)",
+      "Bash(set)",
+      "Bash(source .env*)",
+      "Bash(source */.env*)",
       "Bash(curl --data *)",
       "Bash(curl -d *)",
       "Bash(curl -X DELETE *)",
@@ -249,5 +255,8 @@
   "autoUpdatesChannel": "stable",
   "minimumVersion": "2.1.7",
   "teammateMode": "tmux",
-  "showTurnDuration": true
+  "showTurnDuration": true,
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  }
 }

@@ -1,4 +1,70 @@
 {
   "version": 2,
-  "plugins": {}
+  "plugins": {
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/dylan/projects/situation-monitor",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-07T17:13:26.143Z",
+        "lastUpdated": "2026-02-07T17:13:26.143Z",
+        "gitCommitSha": "236752ad9ab36029b648bfd94707944760242768"
+      }
+    ],
+    "supabase@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/dylan/projects/situation-monitor",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/supabase/236752ad9ab3",
+        "version": "236752ad9ab3",
+        "installedAt": "2026-02-07T17:13:26.143Z",
+        "lastUpdated": "2026-02-07T17:13:26.143Z",
+        "gitCommitSha": "236752ad9ab36029b648bfd94707944760242768"
+      }
+    ],
+    "claude-md-management@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/dylan/projects/situation-monitor",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/claude-md-management/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-07T17:13:26.258Z",
+        "lastUpdated": "2026-02-07T17:13:26.258Z",
+        "gitCommitSha": "236752ad9ab36029b648bfd94707944760242768"
+      }
+    ],
+    "github@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/dylan/projects/situation-monitor",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/github/236752ad9ab3",
+        "version": "236752ad9ab3",
+        "installedAt": "2026-02-07T17:13:26.267Z",
+        "lastUpdated": "2026-02-07T17:13:26.267Z",
+        "gitCommitSha": "236752ad9ab36029b648bfd94707944760242768"
+      }
+    ],
+    "vercel@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/Users/dylan/projects/situation-monitor",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/vercel/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-07T17:13:26.816Z",
+        "lastUpdated": "2026-02-07T17:13:26.816Z",
+        "gitCommitSha": "ae067751b4f42c97d13054211657275029ca8b6d"
+      }
+    ],
+    "swift-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/dylan/.claude/plugins/cache/claude-plugins-official/swift-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-02-10T01:42:34.181Z",
+        "lastUpdated": "2026-02-10T01:42:34.181Z",
+        "gitCommitSha": "236752ad9ab36029b648bfd94707944760242768"
+      }
+    ]
+  }
 }
