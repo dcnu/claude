@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+# Global git pre-commit hook: block commits containing secrets.
+# Install via install-hooks.sh to ~/.config/git/hooks/pre-commit
+# Bypass: git commit --no-verify
+
+set -euo pipefail
+
+# Only scan staged changes (added lines only)
+DIFF=$(git diff --cached --diff-filter=ACM -U0 2>/dev/null || true)
+if [[ -z "$DIFF" ]]; then
+	exit 0
+fi
+
+ERRORS=()
+
+# --- 1. Block staged .env files ---
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null || true)
+while IFS= read -r file; do
+	[[ -z "$file" ]] && continue
+	basename=$(basename "$file")
+	if [[ "$basename" == .env* ]] || [[ "$basename" == *.env ]]; then
+		ERRORS+=("BLOCKED: staged .env file: $file")
+	fi
+done <<< "$STAGED_FILES"
+
+# Extract only added lines (skip diff headers)
+ADDED_LINES=$(echo "$DIFF" | grep '^+' | grep -v '^+++' || true)
+if [[ -z "$ADDED_LINES" ]]; then
+	# Only .env file check applies
+	if [[ ${#ERRORS[@]} -gt 0 ]]; then
+		printf '\n\033[1;31m=== Secret Detection: Commit Blocked ===\033[0m\n' >&2
+		for err in "${ERRORS[@]}"; do
+			echo "  $err" >&2
+		done
+		echo "" >&2
+		echo "Bypass: git commit --no-verify" >&2
+		exit 1
+	fi
+	exit 0
+fi
+
+# --- 2. Known API key prefixes ---
+KEY_PATTERNS=(
+	'sk-[A-Za-z0-9]{20,}'           # OpenAI
+	'sk_live_[A-Za-z0-9]{20,}'      # Stripe live
+	'sk_test_[A-Za-z0-9]{20,}'      # Stripe test
+	'pk_live_[A-Za-z0-9]{20,}'      # Stripe publishable live
+	'pk_test_[A-Za-z0-9]{20,}'      # Stripe publishable test
+	'rk_live_[A-Za-z0-9]{20,}'      # Resend live
+	'rk_test_[A-Za-z0-9]{20,}'      # Resend test
+	'sb_secret_[A-Za-z0-9]{20,}'    # Supabase secret
+	'sbp_[A-Za-z0-9]{20,}'          # Supabase
+	'ghp_[A-Za-z0-9]{20,}'          # GitHub PAT
+	'gho_[A-Za-z0-9]{20,}'          # GitHub OAuth
+	'ghs_[A-Za-z0-9]{20,}'          # GitHub App
+	'ghr_[A-Za-z0-9]{20,}'          # GitHub refresh
+	'github_pat_[A-Za-z0-9]{20,}'   # GitHub fine-grained PAT
+	'xoxb-[A-Za-z0-9-]{20,}'        # Slack bot
+	'xoxp-[A-Za-z0-9-]{20,}'        # Slack user
+	'shpat_[A-Za-z0-9]{20,}'        # Shopify
+	'whsec_[A-Za-z0-9]{20,}'        # Webhook secret
+	'AKIA[A-Z0-9]{16}'              # AWS access key
+	'eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.'  # JWT
+)
+
+for pattern in "${KEY_PATTERNS[@]}"; do
+	if echo "$ADDED_LINES" | grep -qE "$pattern"; then
+		MATCH=$(echo "$ADDED_LINES" | grep -oE "$pattern" | head -1)
+		PREFIX="${MATCH:0:12}..."
+		ERRORS+=("BLOCKED: possible API key found (${PREFIX})")
+	fi
+done
+
+# --- 3. Connection strings with embedded credentials ---
+if echo "$ADDED_LINES" | grep -qE '://[^/:@[:space:]]+:[^/@[:space:]]+@[A-Za-z0-9]'; then
+	ERRORS+=("BLOCKED: connection string with embedded credentials (user:pass@host)")
+fi
+
+# --- 4. Credential assignments (variable = literal value 8+ chars) ---
+CRED_VARS='(DATABASE_PASSWORD|DATABASE_URL|DB_PASSWORD|DB_URL|SUPABASE_SERVICE_ROLE_KEY|SUPABASE_ANON_KEY|OPENAI_API_KEY|ANTHROPIC_API_KEY|STRIPE_SECRET_KEY|STRIPE_WEBHOOK_SECRET|GITHUB_TOKEN|GITHUB_SECRET|VERCEL_TOKEN|SLACK_TOKEN|SLACK_SECRET|SENDGRID_API_KEY|TWILIO_AUTH_TOKEN|AWS_SECRET_ACCESS_KEY|AWS_SESSION_TOKEN|REDIS_PASSWORD|REDIS_URL|MONGO_URI|MONGODB_URI|PRIVATE_KEY|SECRET_KEY)'
+if echo "$ADDED_LINES" | grep -qE "${CRED_VARS}"'[[:space:]]*=[[:space:]]*["'"'"']?[A-Za-z0-9_/.=-]{8,}'; then
+	ERRORS+=("BLOCKED: credential assignment with literal value")
+fi
+
+# --- 5. Inline DB password vars ---
+if echo "$ADDED_LINES" | grep -qE '(PGPASSWORD|MYSQL_PWD)[[:space:]]*=[[:space:]]*[A-Za-z0-9]'; then
+	ERRORS+=("BLOCKED: inline database password assignment (PGPASSWORD/MYSQL_PWD)")
+fi
+
+# --- Report ---
+if [[ ${#ERRORS[@]} -gt 0 ]]; then
+	printf '\n\033[1;31m=== Secret Detection: Commit Blocked ===\033[0m\n' >&2
+	for err in "${ERRORS[@]}"; do
+		echo "  $err" >&2
+	done
+	echo "" >&2
+	echo "Bypass: git commit --no-verify" >&2
+	exit 1
+fi
+
+exit 0

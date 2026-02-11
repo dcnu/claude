@@ -20,7 +20,8 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
   - shadcn 3.8+ components: `pnpm dlx shadcn@latest init`; https://ui.shadcn.com/llms.txt
 - Lucide React icons: `pnpm add lucide-react`
 - Local database - PostgreSQL 18+ with Prisma 7.3+: https://www.prisma.io/docs/llms.txt
-- Production database - Supabase: https://supabase.com/llms.txt; use Supabase CLI
+- Production database - Supabase: https://supabase.com/llms.txt
+  - Use Supabase MCP
 - Deployment - Vercel: https://vercel.com/docs/llms-full.txt
   - Use Vercel CLI: `pnpm i -g vercel`
 - Headless browser automation - agent-browser: `pnpm install -g agent-browser`
@@ -101,6 +102,7 @@ IMPORTANT: prefer retrieval-led reasoning over pre-training-led reasoning before
 - Testing: `pytest` in `tests/` directory
 - I/O: UTF-8 encoding, proper error handling with non-zero exits
 - Imports: Standard library only unless explicitly allowed
+- Log progress to terminal during long-running scripts
 
 ## TypeScript/JavaScript
 - All files must be typed
