@@ -11,6 +11,7 @@ Personal configuration for [Claude Code](https://claude.ai/code).
 └── skills/                # Custom slash commands
     ├── claude-cleanup/    # Scan and redact secrets from memory files
     ├── cleanup/           # Rename files to naming convention
+    ├── commit/            # Validate, commit, and push changes
     ├── create-readme/     # Generate README.md for new repos
     ├── gitignore/         # Generate .gitignore based on project type
     ├── plan-review/       # Review plan files before approval
@@ -26,6 +27,7 @@ Personal configuration for [Claude Code](https://claude.ai/code).
 |-------|-------------|
 | `/claude-cleanup` | Scan and redact secrets (JWT, API keys) from Claude memory files |
 | `/cleanup` | Rename files to follow naming convention `Source-Title-date.ext` |
+| `/commit` | Validate, commit, and push changes with preflight checks |
 | `/create-readme` | Generate README.md and LICENSE when initializing a git repo |
 | `/gitignore` | Generate .gitignore based on detected project type |
 | `/plan-review` | Review a plan file and provide feedback before approval |
