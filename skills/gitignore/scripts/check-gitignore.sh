@@ -1,22 +1,26 @@
 #!/bin/bash
 # Fast pre-commit gitignore validation
-# Outputs JSON with status and issues
+# Checks staged files against .gitignore patterns and hardcoded protected paths.
+# Outputs JSON with status and issues.
 
 set -e
 
-# Critical patterns that should never be committed
-CRITICAL_PATTERNS=(
+# Protected patterns — blocked even without a .gitignore
+# Secrets
+PROTECTED_PATTERNS=(
 	".env"
-	".env.local"
-	".env.development.local"
-	".env.production.local"
-	".env.test.local"
+	".env.*"
 	"*.pem"
 	"*.key"
 	"credentials.json"
 	"service-account*.json"
 	"id_rsa"
 	"id_ed25519"
+)
+# Directories
+PROTECTED_DIRS=(
+	"TODO/"
+	"archive/"
 )
 
 # Get staged files
@@ -27,65 +31,97 @@ if [[ -z "$STAGED_FILES" ]]; then
 	exit 0
 fi
 
-# Check if .gitignore exists
-if [[ ! -f ".gitignore" ]]; then
-	echo '{"status": "warning", "issues": [{"severity": "warning", "message": "No .gitignore file found", "pattern": null}]}'
-	exit 0
-fi
-
 ISSUES=""
 STATUS="ok"
 
-# Check each critical pattern against staged files
-for pattern in "${CRITICAL_PATTERNS[@]}"; do
-	# Use git check-ignore to see if pattern is ignored
-	# Then check if any staged file matches the pattern
+add_issue() {
+	local severity="$1" message="$2"
+	if [[ -n "$ISSUES" ]]; then
+		ISSUES="$ISSUES,"
+	fi
+	# Escape double quotes in message for valid JSON
+	message=$(echo "$message" | sed 's/"/\\"/g')
+	ISSUES="$ISSUES{\"severity\": \"$severity\", \"message\": \"$message\"}"
+}
 
-	# For exact matches
+# --- Check 1: Protected file patterns (hardcoded, always enforced) ---
+for pattern in "${PROTECTED_PATTERNS[@]}"; do
 	if [[ "$pattern" == *"*"* ]]; then
-		# Wildcard pattern - use grep with pattern conversion
 		GREP_PATTERN=$(echo "$pattern" | sed 's/\./\\./g' | sed 's/\*/.*/')
-		MATCHED_FILES=$(echo "$STAGED_FILES" | grep -E "^${GREP_PATTERN}$" || true)
+		MATCHED=$(echo "$STAGED_FILES" | grep -E "(^|/)${GREP_PATTERN}$" || true)
 	else
-		# Exact match
-		MATCHED_FILES=$(echo "$STAGED_FILES" | grep -E "^${pattern}$" || true)
+		MATCHED=$(echo "$STAGED_FILES" | grep -E "(^|/)${pattern}$" || true)
 	fi
-
-	if [[ -n "$MATCHED_FILES" ]]; then
-		# Check if it would be ignored by .gitignore
-		while IFS= read -r file; do
-			if [[ -n "$file" ]]; then
-				# File is staged but should be ignored
-				if [[ -n "$ISSUES" ]]; then
-					ISSUES="$ISSUES,"
-				fi
-				ISSUES="$ISSUES{\"severity\": \"critical\", \"message\": \"$file would be committed (secrets at risk)\", \"pattern\": \"$pattern\"}"
-				STATUS="error"
-			fi
-		done <<< "$MATCHED_FILES"
-	fi
+	while IFS= read -r file; do
+		if [[ -n "$file" ]]; then
+			add_issue "critical" "$file matches protected pattern ($pattern)"
+			STATUS="error"
+		fi
+	done <<< "$MATCHED"
 done
 
-# Check for common accidental commits
-# Large files (> 10MB)
-for file in $STAGED_FILES; do
+# --- Check 2: Protected directories (hardcoded, always enforced) ---
+for dir in "${PROTECTED_DIRS[@]}"; do
+	MATCHED=$(echo "$STAGED_FILES" | grep -E "^${dir}" || true)
+	while IFS= read -r file; do
+		if [[ -n "$file" ]]; then
+			add_issue "critical" "$file is inside protected directory (${dir})"
+			STATUS="error"
+		fi
+	done <<< "$MATCHED"
+done
+
+# --- Check 3: Staged files that match .gitignore rules ---
+# Catches force-added or previously tracked files that .gitignore now covers.
+if [[ -f ".gitignore" ]]; then
+	while IFS= read -r file; do
+		if [[ -n "$file" ]]; then
+			# --no-index checks against ignore rules regardless of index state
+			if git check-ignore --no-index -q "$file" 2>/dev/null; then
+				# Avoid duplicating issues already caught above
+				ALREADY_REPORTED=false
+				for pattern in "${PROTECTED_PATTERNS[@]}"; do
+					if [[ "$pattern" == *"*"* ]]; then
+						GP=$(echo "$pattern" | sed 's/\./\\./g' | sed 's/\*/.*/')
+						echo "$file" | grep -qE "(^|/)${GP}$" && ALREADY_REPORTED=true && break
+					else
+						echo "$file" | grep -qE "(^|/)${pattern}$" && ALREADY_REPORTED=true && break
+					fi
+				done
+				for dir in "${PROTECTED_DIRS[@]}"; do
+					echo "$file" | grep -qE "^${dir}" && ALREADY_REPORTED=true && break
+				done
+				if [[ "$ALREADY_REPORTED" == false ]]; then
+					add_issue "critical" "$file is ignored by .gitignore but staged for commit"
+					STATUS="error"
+				fi
+			fi
+		fi
+	done <<< "$STAGED_FILES"
+else
+	# No .gitignore at all — warn
+	add_issue "warning" "No .gitignore file found"
+	if [[ "$STATUS" == "ok" ]]; then
+		STATUS="warning"
+	fi
+fi
+
+# --- Check 4: Large files (> 10MB) ---
+while IFS= read -r file; do
 	if [[ -f "$file" ]]; then
 		SIZE=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "0")
 		if [[ "$SIZE" -gt 10485760 ]]; then
-			if [[ -n "$ISSUES" ]]; then
-				ISSUES="$ISSUES,"
-			fi
-			ISSUES="$ISSUES{\"severity\": \"warning\", \"message\": \"$file is larger than 10MB\", \"pattern\": null}"
+			add_issue "warning" "$file is larger than 10MB"
 			if [[ "$STATUS" == "ok" ]]; then
 				STATUS="warning"
 			fi
 		fi
 	fi
-done
+done <<< "$STAGED_FILES"
 
 # Output JSON
 if [[ -z "$ISSUES" ]]; then
 	echo '{"status": "ok", "issues": []}'
 else
-	echo "{\"status\": \"$STATUS\", \"issues\": [$ISSUES]}"
+	echo "{\"status\": \"$STATUS\", \"issues\": [$ISSUES], \"message\": \"Protected files or ignored files are staged\"}"
 fi

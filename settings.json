@@ -184,13 +184,16 @@
       "Bash(find * -delete *)",
       "Bash(git clean *)",
       "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(python -m pip install *)",
+      "Bash(python3 -m pip install *)",
+      "Bash(uv pip install *)",
       "Bash(trash *)"
     ],
     "ask": [
       "Bash(brew install *)",
       "Bash(brew uninstall *)",
       "Bash(mv *)",
-      "Bash(pip3 install *)",
       "Bash(pnpm add *)",
       "Bash(pnpm install *)",
       "Bash(pnpm remove *)",
@@ -251,13 +254,15 @@
       }
     ]
   },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "linear@claude-plugins-official": true
+  },
   "spinnerTipsEnabled": true,
   "alwaysThinkingEnabled": true,
-  "autoUpdatesChannel": "stable",
-  "minimumVersion": "2.1.7",
+  "autoUpdatesChannel": "latest",
+  "installMethod": "native",
   "teammateMode": "tmux",
-  "showTurnDuration": true,
-  "enabledPlugins": {
-    "swift-lsp@claude-plugins-official": true
-  }
+  "showTurnDuration": true
 }
